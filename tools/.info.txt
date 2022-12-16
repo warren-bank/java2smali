@@ -1,0 +1,23 @@
+dx:
+===
+https://android.googlesource.com/platform/prebuilts/sdk/+/platform-tools-29.0.3/tools/lib/dx.jar
+https://android.googlesource.com/platform/prebuilts/sdk/+/platform-tools-29.0.3/tools/lib/dx.jar?format=TEXT
+
+baksmali:
+=========
+https://github.com/JesusFreke/smali
+https://bitbucket.org/JesusFreke/smali/downloads/
+https://bitbucket.org/JesusFreke/smali/downloads/baksmali-2.5.2.jar
+
+--------------------------------------------------------------------------------
+
+https://github.com/google/gitiles/issues/7
+
+Q: how to download a binary file from a git repo in googlesource?
+A: Base64-encoded raw file support is (recently) available.
+   Add querystring to URL:
+       ?format=TEXT
+   To decode:
+       cat aapt.txt | base64 -d > aapt.exe
+
+--------------------------------------------------------------------------------

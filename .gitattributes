@@ -1,0 +1,15 @@
+* text=auto
+
+*.sh  text eol=lf
+
+*.cmd text eol=crlf
+*.bat text eol=crlf
+
+bin/java2smali       text eol=lf
+bin/java2smali.cmd   text eol=crlf
+
+test/1-transpile     text eol=lf
+test/1-transpile.bat text eol=crlf
+
+test/2-run           text eol=lf
+test/2-run.bat       text eol=crlf

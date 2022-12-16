@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+src_dir_path="$1"
+dst_dir_path="$2"
+rel_fil_path="$3"
+
+function usage {
+  echo 'usage: java2smali [src_dir_path] [dst_dir_path] [rel_file_path]'
+  exit 1
+}
+
+if [ -z "$src_dir_path" ]; then
+  usage
+fi
+
+if [ -z "$dst_dir_path" ]; then
+  usage
+fi
+
+if [ -z "$rel_fil_path" ]; then
+  rel_fil_path="$dst_dir_path"
+  dst_dir_path="$src_dir_path"
+fi
+
+if [ ! -d "$dst_dir_path" ]; then
+  mkdir -p "$dst_dir_path"
+fi
+
+cd "$dst_dir_path"
+
+javac -sourcepath "$src_dir_path" -d "$dst_dir_path" -g:none "${src_dir_path}/${rel_fil_path}.java"
+
+java -jar "${DIR}/../tools/dx.jar" --dex --output "${rel_fil_path}.dex" "${rel_fil_path}.class"
+
+java -jar "${DIR}/../tools/baksmali.jar" disassemble -o "." "${rel_fil_path}.dex"
